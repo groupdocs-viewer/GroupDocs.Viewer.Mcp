@@ -1,0 +1,39 @@
+# GroupDocs.Viewer MCP Server
+
+MCP server for GroupDocs.Viewer for .NET — render document pages as PNG images, plus inspect view info (page count, dimensions, file type). Supports PDF, Word, Excel, PowerPoint, ODT, RTF, HTML, and 170+ more formats. Exposes RenderPage and GetViewInfo tools to AI agents (Claude, Cursor, VS Code / GitHub Copilot, and other MCP-compatible clients).
+
+## Install
+
+- With dnx (.NET 10 SDK, no install step): `dnx GroupDocs.Viewer.Mcp@26.5.0 --yes`
+- As a global dotnet tool: `dotnet tool install -g GroupDocs.Viewer.Mcp` then run `groupdocs-viewer-mcp`
+- As a Docker container: `docker run --rm -i -v $(pwd)/documents:/data ghcr.io/groupdocs-viewer/viewer-net-mcp:latest`
+
+## MCP tools
+
+- RenderPage — render a single document page as a PNG image; returns a CallToolResult containing both a TextContentBlock (saved file path under `<source-stem>_page<N>.png`) and an ImageContentBlock (PNG bytes inline as `image/png`); takes optional `page` (1-based, default 1) and `password` for protected documents
+- GetViewInfo — inspect a single source document and return file type, page count, and per-page dimensions (number, width, height, name, visible) as JSON; no rendering performed; takes optional `password` for protected documents
+
+## Supported formats
+
+PDF, DOCX, XLSX, PPTX, ODT, ODS, ODP, RTF, TXT, HTML, EPUB, MOBI, EML, MSG, MPP, VSDX, DWG, PSD, AI, and 170+ more document, image, email, and CAD formats.
+
+## Environment variables
+
+- GROUPDOCS_MCP_STORAGE_PATH — base folder for input + output (defaults to current working directory)
+- GROUPDOCS_MCP_OUTPUT_PATH — optional, routes output files to a separate folder
+- GROUPDOCS_LICENSE_PATH — path to GroupDocs.Total.lic, omit for evaluation mode (rendered output watermarked)
+
+## Key links
+
+- NuGet: https://www.nuget.org/packages/GroupDocs.Viewer.Mcp
+- Repository: https://github.com/groupdocs-viewer/GroupDocs.Viewer.Mcp
+- Docker: ghcr.io/groupdocs-viewer/viewer-net-mcp and docker.io/groupdocs/viewer-net-mcp
+- License: MIT
+
+## Example prompts for AI agents
+
+- "Render page 1 of report.pdf — show me the image."
+- "How many pages does contract.docx have? What size is each page?"
+- "Show me page 5 of the slide deck quarterly.pptx."
+- "Inspect /docs/legal-brief.pdf — what file type and page count?"
+- "Render the first three pages of presentation.pptx as PNGs."

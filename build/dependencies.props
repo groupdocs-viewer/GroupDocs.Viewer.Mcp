@@ -1,0 +1,43 @@
+<Project>
+
+  <PropertyGroup Label="SDK Versions">
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Reproducible build">
+    <Deterministic>true</Deterministic>
+    <ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Package information">
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/groupdocs-viewer/GroupDocs.Viewer.Mcp</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/groupdocs-viewer/GroupDocs.Viewer.Mcp</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Authors>GroupDocs Contributors</Authors>
+    <Company>Aspose</Company>
+    <Copyright>Copyright © Aspose Pty Ltd $([System.DateTime]::Now.Year)</Copyright>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>true</AllowedOutputExtensionsInPackageBuildOutputFolder>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Package Versions">
+    <GroupDocsViewerMcp>26.5.0</GroupDocsViewerMcp>
+  </PropertyGroup>
+
+  <PropertyGroup Label="External Dependency Versions">
+    <GroupDocsMcpCore>26.4.1</GroupDocsMcpCore>
+    <GroupDocsViewer>26.4.0</GroupDocsViewer>
+    <MicrosoftExtensionsHosting>10.0.5</MicrosoftExtensionsHosting>
+    <ModelContextProtocol>1.1.0</ModelContextProtocol>
+    <MicrosoftSourceLinkGithub>8.0.0</MicrosoftSourceLinkGithub>
+    <!-- Must match the SkiaSharp version $(GroupDocsViewer) transitively pulls. Re-verify after every GroupDocsViewer bump (ABI-incompatible otherwise). Viewer's nuspec declares SkiaSharp 3.119.1 explicitly. -->
+    <SkiaSharp>3.119.1</SkiaSharp>
+  </PropertyGroup>
+
+  <PropertyGroup Label="NuGet Common Settings">
+    <PackageReleaseNotes>https://github.com/groupdocs-viewer/GroupDocs.Viewer.Mcp/releases/tag/$(GroupDocsViewerMcp)</PackageReleaseNotes>
+  </PropertyGroup>
+
+</Project>
