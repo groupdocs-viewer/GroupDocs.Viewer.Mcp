@@ -17,7 +17,7 @@ Pulls the latest stable release on every invocation. To pin to a specific
 version (recommended for shared configs and CI), append `@<version>`:
 
 ```bash
-dnx GroupDocs.Viewer.Mcp@26.5.0 --yes
+dnx GroupDocs.Viewer.Mcp@26.5.1 --yes
 ```
 
 **Or install as a global dotnet tool:**
@@ -87,7 +87,7 @@ The client picks `RenderPage` for "show me a page" requests and
 ```
 
 > To pin to a specific version, replace `"GroupDocs.Viewer.Mcp"` with
-> `"GroupDocs.Viewer.Mcp@26.5.0"` in `args`. Pinning is recommended for
+> `"GroupDocs.Viewer.Mcp@26.5.1"` in `args`. Pinning is recommended for
 > shared / committed configs to avoid surprise upgrades.
 
 ## Usage with VS Code / GitHub Copilot
@@ -121,7 +121,7 @@ Alternatively, add manually to `.vscode/mcp.json`:
 ```
 
 > Same pinning rule as above — swap `"GroupDocs.Viewer.Mcp"` for
-> `"GroupDocs.Viewer.Mcp@26.5.0"` to lock to a specific release.
+> `"GroupDocs.Viewer.Mcp@26.5.1"` to lock to a specific release.
 
 ## Usage with Docker Compose
 

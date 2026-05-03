@@ -23,7 +23,7 @@
   </PropertyGroup>
 
   <PropertyGroup Label="Package Versions">
-    <GroupDocsViewerMcp>26.5.0</GroupDocsViewerMcp>
+    <GroupDocsViewerMcp>26.5.1</GroupDocsViewerMcp>
   </PropertyGroup>
 
   <PropertyGroup Label="External Dependency Versions">
