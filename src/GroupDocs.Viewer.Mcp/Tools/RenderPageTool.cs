@@ -17,7 +17,8 @@ public static class RenderPageTool
         "Call this tool immediately whenever the user asks to render, preview, or get a page image from a document. " +
         "Do NOT pre-check whether files exist — just pass the filename the user provided. " +
         "The tool resolves files from storage and returns an error with available files if a name is not found. " +
-        "Returns a CallToolResult containing both a TextContentBlock (saved file path under `<source-stem>_page<N>.png`) and an ImageContentBlock (the PNG bytes inline as `image/png`).")]
+        "Returns a CallToolResult containing both a TextContentBlock (saved file path under `<source-stem>_page<N>.png`) and an ImageContentBlock (the PNG bytes inline as `image/png`). " +
+        "On failure, IsError is set and the response text starts with 'Rendering failed for' followed by the underlying exception type, message, and inner-exception chain.")]
     public static async Task<CallToolResult> RenderPage(
         IFileResolver resolver,
         IFileStorage storage,
@@ -57,6 +58,14 @@ public static class RenderPageTool
                     new TextContentBlock { Text = prefix + fileInfo },
                     ImageContentBlock.FromBytes(bytes, "image/png")
                 ]
+            };
+        }
+        catch (Exception ex)
+        {
+            return new CallToolResult
+            {
+                IsError = true,
+                Content = [new TextContentBlock { Text = ToolError.Format("Rendering", resolved.FileName, ex) }]
             };
         }
         finally
