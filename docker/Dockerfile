@@ -16,9 +16,18 @@ FROM base AS final
 # its hidden font dependency. Pair this with <RuntimeHostConfigurationOption
 # Include="System.Drawing.EnableUnixSupport" Value="true" /> in the consuming
 # csproj — without both, rendering throws PlatformNotSupportedException on Linux.
+#
+# ttf-mscorefonts-installer supplies Arial / Times New Roman / etc. RenderPage
+# rasterizes pages to PNG and lays out text glyphs; without the MS core fonts
+# the engine fails on font resolution and the wrapped error reads "Rendering
+# failed for '<file>'". EULA accepted via debconf-set-selections; fc-cache
+# refresh so the newly-installed fonts are discoverable. This mirrors the
+# integration Tests repo's Linux native-deps step.
 USER root
 RUN apt-get update \
- && apt-get install -y --no-install-recommends libgdiplus libfontconfig1 \
+ && echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | debconf-set-selections \
+ && apt-get install -y --no-install-recommends libgdiplus libfontconfig1 ttf-mscorefonts-installer \
+ && fc-cache -f -v > /dev/null \
  && rm -rf /var/lib/apt/lists/*
 
 # OCI image labels. VERSION is supplied by the publish workflow via
